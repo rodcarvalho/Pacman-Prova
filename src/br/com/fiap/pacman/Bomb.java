@@ -4,6 +4,7 @@ public class Bomb extends Item {
     }
 
     public Bomb(int positionX, int positionY) {
+        super(positionX, positionY);
     }
     
 }

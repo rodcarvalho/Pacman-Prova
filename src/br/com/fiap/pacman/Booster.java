@@ -6,7 +6,8 @@ public class Booster extends Item {
     }
 
     public Booster(int positionX, int positionY, int duration){
-
+        super(positionX, positionY);
+        this.duration = duration;
     }
 
     public int getDuration() {
@@ -14,6 +15,7 @@ public class Booster extends Item {
     }
 
     public void setDuration(int duration) {
+        if(isPositive(duration))
         this.duration = duration;
     }
 

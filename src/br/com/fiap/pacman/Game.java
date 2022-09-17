@@ -19,7 +19,7 @@ public class Game extends JFrame implements KeyListener {
 	private ArrayList<Ghost> listGhosts = new ArrayList<>();
 	private Bomb bomb = new Bomb(100, 100);
 	private ArrayList<Bomb> listBombs = new ArrayList<>();
-	private Booster booster = new Booster(400, 400, 5);
+	private Booster booster = new Booster(400, 400, 1000);
 	private ArrayList<Booster> listBoosters = new ArrayList<>();
 
 	private JLabel imgPlayer = new JLabel(new ImageIcon("src/images/pacman.png"));
@@ -44,7 +44,7 @@ public class Game extends JFrame implements KeyListener {
 		listGhosts.add(ghost4);
 		listBombs.add(bomb);
 		listBoosters.add(booster);
-		
+
 		setLayout(null);
 		player.setScreenSize(SCREENSIZE);
 		player.setLife(15);
@@ -102,7 +102,7 @@ public class Game extends JFrame implements KeyListener {
 			ghost4.move();
 			
 			for (Ghost ghost : listGhosts) {
-				if (player.getPositionX() == ghost.getPositionX() && player.getPositionY() == ghost.getPositionY()) {
+				if (player.getPositionX() == ghost.getPositionX() && player.getPositionY() == ghost.getPositionY()&& !player.isGodMode()) {
 					player.setLife(player.getLife() - 1);
 				}
 			}
@@ -110,17 +110,19 @@ public class Game extends JFrame implements KeyListener {
 			for (Bomb bomb : listBombs) {
 				if (player.getPositionX() == bomb.getPositionX() && player.getPositionY() == bomb.getPositionY()
 						&& bomb.isVisible()) {
-					player.setLife(player.getLife() - 1);
+					if ( !player.isGodMode()) player.setLife(player.getLife() - 1);
 					bomb.setVisible(false);
+					remove(imgBomb);
 				}
 			}
 
 			for (Booster booster : listBoosters) {
 				if (player.getPositionX() == booster.getPositionX() && player.getPositionY() == booster.getPositionY()
-						&& booster.isVisible()) {
+						&& booster.isVisible() && !player.isGodMode()) {
 					player.setGodMode(true);
 					;
 					booster.setVisible(false);
+					remove(imgBooster);
 				}
 
 				if (!booster.isVisible() && booster.getDuration() > 0)

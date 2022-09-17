@@ -16,18 +16,18 @@ public class Ghost extends GameObject {
         int newPositionX = getPositionX();
         int newPositionY = getPositionY();
         switch (direction) {
-            case 90:
+            case 0:
                 newPositionX += 10;
                 break;
-            case 0:
+            case 1:
                 newPositionY -= 10;
                 break;
 
-            case 270:
+            case 2:
                 newPositionX -= 10;
                 break;
 
-            case 180:
+            case 3:
                 newPositionY += 10;
                 break;
 
